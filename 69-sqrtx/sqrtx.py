@@ -1,3 +1,4 @@
+import math 
 class Solution(object):
     def mySqrt(self, x):
         """
@@ -6,10 +7,7 @@ class Solution(object):
         """
         if x < 2:
             return x
-            
-        i = 2
-        while i**2 <= x:
-            i += 1
-        return i-1
+
+        return int(sqrt(x))
 
         
