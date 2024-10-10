@@ -10,10 +10,13 @@ class Solution(object):
         :rtype: ListNode
         """
         current = head
-        while current:
-            while current.next and current.next.val == current.val:
+        while current and current.next:
+            if current.val == current.next.val:
                 current.next = current.next.next
-            current = current.next
+            else:
+                current = current.next
         
         return head
+
+                
         
