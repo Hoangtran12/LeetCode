@@ -17,7 +17,9 @@ class Solution:
             num = 0
             for r in range(l, n):
                 num = gcd(num, nums[r])
-                if num == 1 : result = min(result, r - l)
+                if num == 1 : 
+                    result = min(result, r - l)
+                    break
         
         if result == math.inf: return -1
         return result + n -1
