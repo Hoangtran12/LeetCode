@@ -14,8 +14,8 @@ class Solution:
         result = math.inf
 
         for l in range(n):
-            num = nums[l]
-            for r in range(l + 1, n):
+            num = 0
+            for r in range(l, n):
                 num = gcd(num, nums[r])
                 if num == 1 : result = min(result, r - l)
         
