@@ -1,17 +1,14 @@
 class Solution:
     def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:
         intervals.sort(key=lambda x: (x[1], -x[0]))
-        sl = SortedList()
+        # sl = SortedList()
+        p1, p2 = -1, -1
+        count = 0
         for start, end in intervals:
-            left = sl.bisect_left(start)
-            right = sl.bisect_right(end)
-
-            if right - left == 0:
-                sl.add(end-1)
-                sl.add(end)
-            elif right - left == 1:
-                if end not in sl:
-                    sl.add(end)
-                else:
-                    sl.add(end-1)
-        return len(sl)
+            if start > p2:
+                count +=2
+                p1, p2 = end -1, end
+            elif start > p1:
+                count +=1
+                p1, p2 = p2, end
+        return count
