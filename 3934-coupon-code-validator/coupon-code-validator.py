@@ -1,23 +1,15 @@
 class Solution:
-    def validateCoupons(self, codes: List[str], businessLine: List[str], isActive: List[bool]) -> List[str]:
-        priority = {
-            "electronics": 0, 
-            "grocery": 1, 
-            "pharmacy": 2, 
-            "restaurant": 3
-        }
-        groups = [[] for _ in range(4)]
-        
-        for code, line, active in zip(codes, businessLine, isActive):
-            if not active or line not in priority:
-                continue
-            
-            cleaned = code.replace('_', '')
-            if code and (cleaned == "" or cleaned.isalnum()):
-                groups[priority[line]].append(code)
-        
+    def validateCoupons(self, code: List[str], businessLine: List[str], isActive: List[bool]) -> List[str]:
         result = []
-        for group in groups:
-            result.extend(sorted(group))
-            
-        return result
+        lines = {"electronics", "grocery", "pharmacy", "restaurant"}
+        for c, b, s in zip(code, businessLine, isActive):
+            if not s:
+                continue
+            if b not in lines:
+                continue
+            if not c or not all(x.isalnum() or x == '_'for x in c):
+                continue
+            result.append((c, b))
+        
+        result.sort(key=lambda x: (x[1], x[0]))
+        return [x[0] for x in result]
