@@ -1,18 +1,10 @@
-class Solution(object):
-    def plusOne(self, digits):
-        """
-        :type digits: List[int]
-        :rtype: List[int]
-        """
-        if digits[-1] != 9:
-            digits[-1] += 1
-            return digits
-        else:
-            nums = int(''.join(map(str, digits)))
-            nums += 1
-            digits_list = [int(digit) for digit in str(nums)]
-            return digits_list
-
-
-
-        
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        n = len(digits)
+        for i in range(n - 1, -1, -1):
+            digits[i] += 1
+            if digits[i] < 10:
+                return digits
+            digits[i] = 0
+            
+        return [1] + [0] * n
