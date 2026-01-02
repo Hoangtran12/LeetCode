@@ -1,7 +1,8 @@
 class Solution:
     def repeatedNTimes(self, nums: List[int]) -> int:
-        counts = collections.Counter(nums)
-
-        for i in counts:
-            if counts[i] > 1:
-                return i
+        for i in range(len(nums)):
+            for j in range(i + 1,len(nums)):
+                if nums[i]==nums[j]:
+                    return nums[i]
+        return 0
+        
